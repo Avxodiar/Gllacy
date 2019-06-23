@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Gllacy Shop</title>
+</head>
+<body>
+  <header class="main-header">
+
+    <nav class="main-nav">
+      <a class="logo" aria-label="Главная страница">
+        <img src="img/logo.png" alt="Логотип Gllacy Shop">
+      </a>
+      <ul class="main-menu">
+        <li class="current">
+          <a href="#catalog.html">Каталог</a>
+          <ul class="menu-catalog visually-hidden">
+            <li class="new">
+              <a href="#catalog/new.html">Новинки</a>
+            </li>
+            <li>
+              <a href="#catalog/creamy.html">Сливочное</a>
+            </li>
+            <li>
+              <a href="#catalog/sorbet.html">Щербеты</a>
+            </li>
+            <li>
+              <a href="#catalog/fruit-ice.html">Фруктовый лед</a>
+            </li>
+            <li>
+              <a href="#catalog/melorin.html">Мелорин</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#delivery.html">Доставка и оплата</a>
+        </li>
+        <li>
+          <a href="#about.html">О Компании</a>
+        </li>
+      </ul>
+
+      <form action="https://echo.htmlacademy.ru" class="form-search"  aria-label="Форма поиска">
+        <button class="button-search" type="button">
+          <span class="visually-hidden">Поиск</span>
+        </button>
+        <input type="text" class="visually-hidden" placeholder="Что ищем">
+      </form>
+
+      <ul class="user-menu">
+        <li>
+          <a href="#login.html" class="login-link" title="Авторизация">Вход</a>
+          <form action="https://echo.htmlacademy.ru" method="post" class="user-auth" aria-label="Форма авторизации">
+            <label for="user-login">Логин</label>
+            <input id="user-login" name="user-login" type="text" placeholder="Электронная почта">
+            <label for="user-password">Пароль</label>
+            <input id="user-password" name="user-password" type="password" placeholder="Пароль">
+            <button class="button" type="submit">Войти</button>
+            <a href="#remember-password.html">Забыли пароль?</a>
+            <a href="#user-registration.html">Новая регистрация</a>
+          </form>
+        </li>
+      </ul>
+
+      <a href="#basket.html" class="basket" title="Корзина">Пусто</a>
+    </nav>
+
+    <div class="contact-info">
+      <p class="contacts-time">С 10 до 20, ежедневно</p>
+      <p class="contacts-phone">8 812 450-25-25</p>
+    </div>
+  </header>
+
+  <main>
+    
+    <ul class="breadcrumbs">
+      <li><a href="index.html">Главная</a></li>
+      <li><a class="#catalog.html">Каталог</a></li>
+      <li>Сливочное</li>
+    </ul>
+    
+    <h1>Сливочное мороженное</h1>
+
+    <section class="filters">
+      <h2 class="visually-hidden">Фильтр по каталогу</h2>
+      <form action="https://echo.htmlacademy.ru" method="get">
+
+        <label for="filter-sort">Сортировка</label>
+        <select name="filter-sort" id="filter-sort">
+          <option value="">по популярности</option>
+        </select>
+
+        <label for="filter-price">Цена: 100 руб. - 500 руб.</label>
+        <input id="filter-price" type="range" name="filter-price">
+
+        <fieldset>
+          <legend>Жирность:</legend>
+          <input id="filter-fat0" name="filter-fat0" type="radio" value="0" disabled>
+          <label for="filter-fat0">0%</label>
+          <input id="filter-fat10" name="filter-fat10" type="radio" value="to10">
+          <label for="filter-fat10">до 10%</label>
+          <input id="filter-fat30" name="filter-fat30" type="radio" value="to30">
+          <label for="filter-fat30">до 30%</label>
+          <input id="filter-fat30over" name="filter-fat30over" type="radio" value="from30">
+          <label for="filter-fat30over">выше 30%</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Наполнители:</legend>
+          <input id="filter-chocolate" name="filter-chocolate"  type="checkbox" checked>
+          <label for="filter-chocolate">шоколадные</label>
+          <input id="filter-sugar" name="filter-sugar" type="checkbox" checked>
+          <label for="filter-sugar">сахарные присыпки</label>
+          <input id="filter-fruit" name="filter-fruit" type="checkbox">
+          <label for="filter-fruit">фрукты</label>
+          <input id="filter-syrup" name="filter-syrup" type="checkbox">
+          <label for="filter-syrup">сироп</label>
+          <input id="filter-jam" name="filter-jam" type="checkbox" disabled>
+          <label for="filter-jam">джемы</label>
+        </fieldset>
+
+        <button class="button button-filter" type="submit">Применить</button>
+      </form>
+    </section>
+
+    <section class="catalog">
+      <h2 class="visually-hidden">Список сливочного мороженного</h2>
+      <ul class="ice-list">
+
+        <li class="icecream">
+          <a href="#">
+            <img src="img/icecream/cream-orange-jam.jpg" alt="Фото сливочного мороженного с апельсиновым джемом и цитрусовой стружкой">
+            <p class="hit-price">310 <span>р</span>/кг</p>
+            <p>Сливочное с апельсиновым джемом и цитрусовой стружкой</p>
+          </a>
+        </li>
+
+        <li class="icecream">
+          <a href="#">
+            <img src="img/icecream/cream-coffee-chocolate.jpg" alt="Фото сливочно-кофейного мороженного с кусочками шоколада">
+            <p class="hit-price">380 <span>р</span>/кг</p>
+            <p>Сливочно-кофейное с кусочками шоколада</p>
+          </a>
+        </li>
+
+        <li class="icecream">
+          <a href="#">
+            <img src="img/icecream/cream-strawberry-whitechocolate.jpg" alt="Фото сливочно-клубничного мороженного с присыпкой из белого шоколада">
+            <p class="hit-price">355 <span>р</span>/кг</p>
+            <p>Сливочно-клубничное с присыпкой из белого шоколада</p>
+          </a>
+        </li>
+
+        <li class="icecream">
+          <a href="#">
+            <img src="img/icecream/cream-brulee-caramel.jpg" alt="Фото сливочного крем-брюле с карамельной подливкой">
+            <p class="hit-price">415 <span>р</span>/кг</p>
+            <p>Сливочное крем-брюле с карамельной подливкой</p>
+          </a>
+        </li>
+
+        <li class="icecream">
+          <a href="#">
+            <img src="img/icecream/cream-lingonberry.jpg" alt="Фото cливочное мороженное с брусничным джемом">
+            <p class="hit-price">325 <span>р</span>/кг</p>
+            <p>Сливочное с брусничным джемом</p>
+          </a>
+        </li>
+
+        <li class="icecream">
+          <a href="#">
+            <img src="img/icecream/cream-blueberry-blueberries.jpg" alt="Фото cливочно-черничное мороженное с цельными ягодами черники">
+            <p class="hit-price">410 <span>р</span>/кг</p>
+            <p>Сливочно-черничное с цельными ягодами черники</p>
+          </a>
+        </li>
+
+        <li class="icecream">
+          <a href="#">
+            <img src="img/icecream/cream-lemon-caramel.jpg" alt="Фото cливочно-лимонное мороженное с карамельной присыпкой ">
+            <p class="hit-price">375 <span>р</span>/кг</p>
+            <p>Сливочно-лимонное с карамельной присыпкой</p>
+          </a>
+        </li>
+
+        <li class="icecream">
+          <a href="#">
+            <img src="img/icecream/cream-chocolate-chips.jpg" alt="Фото cливочное мороженное с шоколадной стружкой">
+            <p class="hit-price">320 <span>р</span>/кг</p>
+            <p>Сливочное с шоколадной стружкой</p>
+          </a>
+        </li>
+
+        <li class="icecream">
+          <a href="#">
+            <img src="img/icecream/cream-vanilla-chocolate.jpg" alt="Фото cливочно-ванильное мороженное с кусочками шоколада">
+            <p class="hit-price">440 <span>р</span>/кг</p>
+            <p>Сливочно-ванильное с кусочками шоколада</p>
+          </a>
+        </li>
+
+        <li class="icecream">
+          <a href="#">
+            <img src="img/icecream/cream-mentholsyrup.jpg" alt="Фото cливочное мороженное с ментоловым сиропом">
+            <p class="hit-price">435 <span>р</span>/кг</p>
+            <p>Сливочноe с ментоловым сиропом</p>
+          </a>
+        </li>
+
+        <li class="icecream">
+          <a href="#">
+            <img src="img/icecream/cream-blackchocolate.jpg" alt="Фото cливочное мороженное с кусочками черного шоколада">
+            <p class="hit-price">355 <span>р</span>/кг</p>
+            <p>Сливочное с кусочками черного шоколада</p>
+          </a>
+        </li>
+
+        <li class="icecream">
+          <a href="#">
+            <img src="img/icecream/cream-mintsyrup.jpg" alt="Фото cливочное мороженное с мятным сиропом">
+            <p class="hit-price">420 <span>р</span>/кг</p>
+            <p>Сливочное с мятным сиропом</p>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <ul class="catalog-pagination">
+      <li class="current">
+        <a>1</a>
+      </li>
+      <li>
+        <a href="#">2</a>
+      </li>
+      <li>
+        <a href="#">3</a>
+      </li>
+      <li>
+        <a href="#">4</a>
+      </li>
+      <li>
+        <a href="#">5</a>
+      </li>
+      <li>
+        <a href="#">></a>
+      </li>
+    </ul>
+    
+  </main>
+
+  <footer class="main-footer">
+
+    <ul class="social-links">
+      <li>
+        <a class="social-button" href="#" title="Твиттер">
+          <span class="visually-hidden">Твиттер</span>
+        </a>
+      </li>
+      <li>
+        <a class="social-button" href="#" title="Инстаграмм">
+          <span class="visually-hidden">Инстаграмм</span>
+        </a>
+      </li>
+      <li>
+        <a class="social-button" href="#" title="Фейсбук">
+          <span class="visually-hidden">Фейсбук</span>
+        </a>
+      </li>
+      <li>
+        <a class="social-button" href="#" title="Вконтакте">
+          <span class="visually-hidden">Вконтакте</span>
+        </a>
+      </li>
+    </ul>
+
+    <ul class="documents">
+      <li>
+        <a href="#for-suppliers.html"><b>Для поставщиков</b></a>
+      </li>
+      <li>
+        <a href="#documents.html">Наши документы</a>
+      </li>
+      <li>
+        <a href="#production.html">О производстве</a>
+      </li>
+      <li>
+        <a href="#eco-standards.html">Экологические стандарты</a>
+      </li>
+    </ul>
+
+    <p class="copyright">
+      <img src="img/html-academy.png" alt="Логотип HTML академии">
+      <b>Сделано в HTML Academy © 2017</b>
+    </p>
+  </footer>
+  
+</body>
+</html>
