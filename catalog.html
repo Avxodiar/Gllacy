@@ -92,10 +92,10 @@
                   Пломбир с апельсиновым джемом
                 </td>
                 <td class="count-price">
-                  1,5кг x 200 руб.
+                  1,5кг x 310 руб.
                 </td>
                 <td class="product-sum">
-                  300 руб.
+                  465 руб.
                 </td>
               </tr>
               <tr>
@@ -111,14 +111,14 @@
                   Клубничный пломбир с присыпкой из белого шоколада
                 </td>
                 <td class="count-price">
-                  121,5кг x 300 руб.
+                  2,0кг x 355 руб.
                 </td>
                 <td class="product-sum">
-                  154 450 руб.
+                  710 руб.
                 </td>
               </tr>
             </table>
-            <p class="basket-sum">Итого: <span>750</span> руб.</p>
+            <p class="basket-sum">Итого: <span>1 175</span> руб.</p>
             <div class="right">
               <a href="#basket.html" class="button">Оформить заказ</a>
             </div>
@@ -150,22 +150,22 @@
 
     <section class="filters">
       <h2 class="visually-hidden">Фильтр по каталогу</h2>
-      <form class="filter-form" action="#https://echo.htmlacademy.ru" method="get">
+      <form class="filter-form" action="#" method="get">
 
         <fieldset>
           <legend>Сортировка:</legend>
           <select class="sort-by" name="filter-sort" id="sort-by">
-            <option value="">по популярности</option>
-            <option value="">сначала недорогие</option>
-            <option value="">сначала дорогие</option>
-            <option value="">по жирности</option>
+            <option value="popular">по популярности</option>
+            <option value="cheap">сначала недорогие</option>
+            <option value="expensive">сначала дорогие</option>
+            <option value="fat">по жирности</option>
           </select>
         </fieldset>
 
         <fieldset>
-          <legend>Цена: 100 руб. - 500 руб.</legend>
+          <legend>Цена: <span class="label-price-from">135</span> руб. - <span class="label-price-to">385</span> руб.</legend>
           <div class="price-by">
-            <input id="filter-price-from" class="filter-price" type="range" name="price-from" min="100" max="500" value="100" step="5">
+            <input id="filter-price-from" class="filter-price" type="range" name="price-from" min="100" max="500" value="135" step="5">
             <input id="filter-price-to" class="filter-price" type="range" name="price-to" min="100" max="500" value="385" step="5">
           </div>
         </fieldset>
@@ -226,7 +226,7 @@
       <h2 class="visually-hidden">Список сливочного мороженого</h2>
       <ul class="ice-list">
 
-        <li class="icecream">
+        <li class="icecream col">
           <a href="#">
             <img src="img/icecream/cream-orange-jam.png" width="267" height="267" alt="Фото сливочного мороженого с апельсиновым джемом и цитрусовой стружкой">
             <p class="price">310</p>
@@ -234,7 +234,7 @@
           </a>
           <button class="button">Быстрый просмотр</button>
         </li>
-        <li class="icecream">
+        <li class="icecream col">
           <a href="#">
             <img src="img/icecream/cream-coffee-chocolate.png" width="267" height="267" alt="Фото сливочно-кофейного мороженого с кусочками шоколада">
             <p class="price">380</p>
@@ -243,7 +243,7 @@
           <button class="button">Быстрый просмотр</button>
         </li>
 
-        <li class="icecream">
+        <li class="icecream col">
           <a href="#">
             <img src="img/icecream/cream-strawberry-whitechocolate.png" width="267" height="267" alt="Фото сливочно-клубничного мороженого с присыпкой из белого шоколада">
             <p class="price">355</p>
@@ -252,7 +252,7 @@
           <button class="button">Быстрый просмотр</button>
         </li>
 
-        <li class="icecream">
+        <li class="icecream col">
           <a href="#">
             <img src="img/icecream/cream-brulee-caramel.png" width="267" height="267" alt="Фото сливочного крем-брюле с карамельной подливкой">
             <p class="price">415</p>
@@ -261,7 +261,7 @@
           <button class="button">Быстрый просмотр</button>
         </li>
 
-        <li class="icecream">
+        <li class="icecream col">
           <a href="#">
             <img src="img/icecream/cream-lingonberry.png" width="267" height="267" alt="Фото cливочное мороженое с брусничным джемом">
             <p class="price">325</p>
@@ -270,7 +270,7 @@
           <button class="button">Быстрый просмотр</button>
         </li>
 
-        <li class="icecream">
+        <li class="icecream col">
           <a href="#">
             <img src="img/icecream/cream-blueberry-blueberries.png" width="267" height="267" alt="Фото cливочно-черничное мороженое с цельными ягодами черники">
             <p class="price">410</p>
@@ -279,7 +279,7 @@
           <button class="button">Быстрый просмотр</button>
         </li>
 
-        <li class="icecream">
+        <li class="icecream col">
           <a href="#">
             <img src="img/icecream/cream-lemon-caramel.png" width="267" height="267" alt="Фото cливочно-лимонное мороженое с карамельной присыпкой ">
             <p class="price">375</p>
@@ -288,7 +288,7 @@
           <button class="button">Быстрый просмотр</button>
         </li>
 
-        <li class="icecream">
+        <li class="icecream col">
           <a href="#">
             <img src="img/icecream/cream-chocolate-chips.png" width="267" height="267" alt="Фото cливочное мороженое с шоколадной стружкой">
             <p class="price">320</p>
@@ -297,7 +297,7 @@
           <button class="button">Быстрый просмотр</button>
         </li>
 
-        <li class="icecream">
+        <li class="icecream col">
           <a href="#">
             <img src="img/icecream/cream-vanilla-chocolate.png" width="267" height="267" alt="Фото cливочно-ванильное мороженое с кусочками шоколада">
             <p class="price">440</p>
@@ -306,7 +306,7 @@
           <button class="button">Быстрый просмотр</button>
         </li>
 
-        <li class="icecream">
+        <li class="icecream col">
           <a href="#">
             <img src="img/icecream/cream-mentholsyrup.png" width="267" height="267" alt="Фото cливочное мороженое с ментоловым сиропом">
             <p class="price">435</p>
@@ -315,7 +315,7 @@
           <button class="button">Быстрый просмотр</button>
         </li>
 
-        <li class="icecream">
+        <li class="icecream col">
           <a href="#">
             <img src="img/icecream/cream-blackchocolate.png" width="267" height="267" alt="Фото cливочное мороженое с кусочками черного шоколада">
             <p class="price">355</p>
@@ -324,7 +324,7 @@
           <button class="button">Быстрый просмотр</button>
         </li>
 
-        <li class="icecream">
+        <li class="icecream col">
           <a href="#">
             <img src="img/icecream/cream-mintsyrup.png" width="267" height="267" alt="Фото cливочное мороженое с мятным сиропом">
             <p class="price">420</p>
@@ -384,10 +384,13 @@
     </div>
 
     <div class="copyright col">
-      <img src="img/logo-htmlacademy.svg" width="108" height="39" alt="Логотип HTML академии">
-      <p>Сделано в HTML Academy © 2017</p>
+      <a href="https://htmlacademy.ru/intensive/htmlcss">
+        <img src="img/logo-htmlacademy.svg" width="108" height="39" alt="Логотип HTML академии">
+      </a>
+      <p>Сделано в <a href="https://htmlacademy.ru/intensive/htmlcss">HTML Academy</a> © 2017</p>
     </div>
   </footer>
   
+  <script src="js/script.js"></script>
 </body>
 </html>
