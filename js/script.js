@@ -3,7 +3,8 @@ var sliderId = 0;
 // предыд.слайдер
 var prevSlider = 'slider-1';
 // цвета для фона и подсветки
-var sliderColors = [ ['#c7ecd8', '#849D8F'], ['#c5d8e8', '#8996a6'], ['#e1ccc4', '#9d8b84'] ];
+//var sliderColors = [ ['#c7ecd8', '#849D8F'], ['#c5d8e8', '#8996a6'], ['#e1ccc4', '#9d8b84'] ];
+var sliderColors = [ 'bg-green', 'bg-blue', 'bg-light-brown' ];
 
 // поддержка LocalStorage
 var isStorageSupport = true;
@@ -181,12 +182,10 @@ function setSliderListeners() {
  * @param int sliderId - номер слайдера, отсчет с 1!
  */
 function setBackground(sliderId) {
+  document.body.classList.remove('bg-green', 'bg-blue', 'bg-light-brown');
   sliderId = sliderId - 1;
   if( sliderColors[ sliderId ] ) {
-    document.body.style.backgroundColor = sliderColors[sliderId][1];
-    if( !document.body.classList.contains('inner-pages') ) {
-      document.body.style.backgroundImage = "radial-gradient(circle at center 450px, "+ sliderColors[sliderId][0] + ", " + sliderColors[sliderId][1] + " 30%)";
-    }
+    document.body.classList.add( sliderColors[ sliderId ] );
   }
 }
 
