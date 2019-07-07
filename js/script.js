@@ -99,6 +99,11 @@ if( blockPrice ) {
   priceRange.className = "price-range";
   blockPrice.appendChild(priceRange);
 
+  // инициализируем состояние ползунков (ff игнорирует значение value даже после перезагрузки страницы)
+  labelFrom.innerText = priceFrom.value;
+  labelTo.innerText = priceTo.value;
+  changePriceFrom();
+
   // доступность для блока сортировка по цене
   priceFrom.addEventListener("focus", function() {
     blockPrice.classList.add("focus");
@@ -115,6 +120,35 @@ if( blockPrice ) {
 
   priceFrom.addEventListener("input", changePriceFrom);
   priceTo.addEventListener("input", changePriceTo);
+}
+
+var blockFat = document.querySelector(".filter-form ul.fat");
+if( blockFat ){
+  var fieldsFat = blockFat.querySelectorAll(".input-type [type='radio']");
+  if(fieldsFat.length) {
+    fieldsFat.forEach( function(elem) {
+      elem.addEventListener("focus", function() {
+        blockFat.classList.add("focus");
+      });
+      elem.addEventListener("blur", function() {
+        blockFat.classList.remove("focus");
+      });
+    });
+  }
+}
+var blockFiller = document.querySelector(".filter-form ul.fillers");
+if( blockFiller ){
+  var fieldsFiller = blockFiller.querySelectorAll(".input-type [type='checkbox']");
+  if(fieldsFiller.length) {
+    fieldsFiller.forEach( function(elem) {
+      elem.addEventListener("focus", function() {
+        blockFiller.classList.add("focus");
+      });
+      elem.addEventListener("blur", function() {
+        blockFiller.classList.remove("focus");
+      });
+    });
+  }
 }
 
 /* обработчик изменения ползунка цены ОТ */
