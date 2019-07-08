@@ -53,7 +53,7 @@
             <span class="visually-hidden">Поиск</span>
           </button>
           <form action="https://echo.htmlacademy.ru" class="form-search form-input"  aria-label="Форма поиска">
-            <input type="text" name="seach-text" placeholder="Что ищем" required>
+            <input type="text" name="seach-text" placeholder="Что ищем">
           </form>
         </section>
 
@@ -204,10 +204,10 @@
         <div>
           <h2 class="visually-hidden">Рассылка</h2>
           <p>Подпишитесь на нашу сладкую рассылку и будете всегда в курсе всего самого вкусного, что у нас происходит. Обещаем не спамить и не слать всякой ненужной ерунды. Честно =) </p>
-          <form class="subscribe-form form-input" action="https://echo.htmlacademy.ru" method="post" aria-label="Форма подписки на рассылку">
+          <form class="form-subscribe form-input" action="https://echo.htmlacademy.ru" method="post" aria-label="Форма подписки на рассылку">
             <label for="subscribe-mail" class="visually-hidden">Электронная почта</label>
-            <input id="subscribe-mail" type="text" placeholder="Электронная почта">
-            <button class="button" type="button">Отправить</button>
+            <input id="subscribe-mail" name="subscribe-mail" type="text" placeholder="Электронная почта">
+            <button class="button" type="submit">Отправить</button>
           </form>
         </div>
       </section>
@@ -224,14 +224,14 @@
         <p>(с 10 до 20 ежедневно)</p>
         <button class="button">Форма обратной связи</button>
       </div>
-      <form action="https://echo.htmlacademy.ru" method="post" class="feedback-form form-input hidden" aria-label="Форма обратной связи">
+      <form action="https://echo.htmlacademy.ru" method="post" class="form-feedback form-input hidden" aria-label="Форма обратной связи">
         <h3>Мы обязательно вам ответим!</h3>
         <label for="feedback-name" class="visually-hidden">Имя</label>
-        <input id="feedback-name" name="feedback-name" type="text" placeholder="Как вас зовут?" required>
+        <input id="feedback-name" name="feedback-name" type="text" placeholder="Как вас зовут?">
         <label for="feedback-mail" class="visually-hidden">Почта</label>
-        <input id="feedback-mail" name="feedback-mail" type="text" placeholder="Ваша почта для ответа?" required>
+        <input id="feedback-mail" name="feedback-mail" type="text" placeholder="Ваша почта для ответа?">
         <label for="feedback-message" class="visually-hidden">Текст сообщения</label>
-        <textarea name="feedback-message" id="feedback-message" cols="30" rows="10" placeholder="Напишите что-нибудь" required></textarea>
+        <textarea name="feedback-message" id="feedback-message" cols="30" rows="10" placeholder="Напишите что-нибудь"></textarea>
         <div class="right">
           <button class="button" type="submit">Отправить</button>
         </div>

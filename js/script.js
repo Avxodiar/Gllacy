@@ -3,18 +3,26 @@ var sliderId = 0;
 // предыд.слайдер
 var prevSlider = 'slider-1';
 // цвета для фона и подсветки
-//var sliderColors = [ ['#c7ecd8', '#849D8F'], ['#c5d8e8', '#8996a6'], ['#e1ccc4', '#9d8b84'] ];
 var sliderColors = [ 'bg-green', 'bg-blue', 'bg-light-brown' ];
 
 // поддержка LocalStorage
 var isStorageSupport = true;
 
+// Логин пользователя сохраненный в LocalStorage
+var storageLogin = '';
+
 // элементы меню
 var formSearch = document.querySelector(".form-search");
+var searchField = formSearch.querySelector("[name='seach-text']");
 var buttonAuth = document.querySelector(".login-link");
 var userAuth = document.querySelector(".user-auth");
+var loginField = userAuth.querySelector("[name='user-login']");
+var paswdField = userAuth.querySelector("[name='user-password']");
 var buttonBasket = document.querySelector(".basket")
 var basket = document.querySelector(".basket-popup");
+var formSubscribe = document.querySelector(".form-subscribe");
+var formFeedback = document.querySelector(".form-feedback");
+
 
 try {
   sliderId = localStorage.getItem("sliderId");
@@ -27,18 +35,25 @@ sliderInit();
 // показываем карту после её загрузки
 showFrameMap();
 
-// показ формы обратной связи
-var feedbackForm = document.querySelector(".feedback-form");
-if( feedbackForm ) {
-  var feedback = document.querySelector(".our-adress button");
-  feedback.addEventListener('click', showFeedback);
+//проверяем введен ли логин. если нет - берем из localStorage
+if ( isStorageSupport) {
+  storageLogin = localStorage.getItem("login");
+  if(!loginField.value && storageLogin ) {
+    loginField.value = storageLogin;
+  }
 }
+
 
 // открытие всплывающих блоков по нажатию Пробела
 window.addEventListener("keydown", showPopupBySpace );
+
 // закрытие формы обратной связи по нажатию ESC
 window.addEventListener("keydown", evtCloseByEsc );
 
+// валидация формы поиска при отправлении
+formSearch.addEventListener("submit", evtSearchValidation );
+// проверка полей формы авторизации при
+searchField.addEventListener("input", evtFieldValidation );
 
 // скрытие формы поиска при потере фокуса
 formSearch.querySelector('input').addEventListener("blur", function() {
@@ -51,6 +66,38 @@ buttonAuth.addEventListener("focus", function() {
 userAuth.querySelector('a:last-child').addEventListener("blur", function() {
   userAuth.classList.remove("showed");
 });
+
+// валидация формы авторизации при отправлении
+userAuth.addEventListener("submit", evtAuthValidation );
+// проверка полей формы авторизации при изменении
+loginField.addEventListener("input", evtFieldValidation );
+paswdField.addEventListener("input", evtFieldValidation );
+
+// валидация формы подписки при отправлении
+if( formSubscribe ) {
+  formSubscribe.addEventListener("submit", evtSubscribeValidation );
+  // проверка полей формы авторизации при изменении
+  var subscribeField = formSubscribe.querySelector("[name='subscribe-mail']");
+  subscribeField.addEventListener("input", evtFieldValidation );
+}
+
+// показ формы обратной связи
+if( formFeedback ) {
+  var feedback = document.querySelector(".our-adress button");
+  feedback.addEventListener('click', showFeedback);
+
+  // валидация формы обратной связи при отправлении
+  formFeedback.addEventListener("submit", evtFeedbackValidation );
+
+  var feedbackNameField = formFeedback.querySelector("[name='feedback-name']");
+  var feedbackMailField = formFeedback.querySelector("[name='feedback-mail']");
+  var feedbackMessField = formFeedback.querySelector("[name='feedback-message']");
+  // проверка полей формы авторизации при изменении
+  feedbackNameField.addEventListener("input", evtFieldValidation );
+  feedbackMailField.addEventListener("input", evtFieldValidation );
+  feedbackMessField.addEventListener("input", evtFieldValidation );
+}
+
 // скрытие корзины при потере фокуса
 if(basket) {
   buttonBasket.addEventListener("focus", function() {
@@ -67,7 +114,6 @@ catalogMenuLink.addEventListener("blur", function() {
   document.querySelector(".main-menu li:first-child a").classList.remove("menu-item-hover");
   catalogMenu.classList.remove("showed");
 });
-
 
 // удаление элементов корзины
 var basketPopup = document.querySelector('.basket-popup');
@@ -265,11 +311,11 @@ function showPopupBySpace(event) {
  * обработчик закрытия формы обратной связи
  */
 function showFeedback() {
-  feedbackForm.classList.remove('hidden');
-  feedbackForm.querySelector("#feedback-name").focus();
-  var feedbackClose = feedbackForm.querySelector('.button-close');
+  formFeedback.classList.remove('hidden');
+  formFeedback.querySelector("#feedback-name").focus();
+  var feedbackClose = formFeedback.querySelector('.button-close');
   feedbackClose.addEventListener('click', function(){
-    feedbackForm.classList.add('hidden');
+    formFeedback.classList.add('hidden');
   });
 }
 
@@ -278,12 +324,118 @@ function showFeedback() {
  */
 function evtCloseByEsc(event) {
   if( event.keyCode === 27 ) {
-    if( !feedbackForm.classList.contains("hidden") ) {
+    if( !formFeedback.classList.contains("hidden") ) {
       event.preventDefault();
-      feedbackForm.classList.add('hidden');
+      formFeedback.classList.add('hidden');
     }
   }
 }
+
+/**
+ * Валидация формы поиска при отправке
+ */
+function evtSearchValidation(event) {
+  if( !searchField.value) {
+    event.preventDefault();
+    showEventError(searchField);
+  }
+}
+
+/**
+ * удаление класса для индикации ошибки при изменении и не пустом значении
+ */
+function evtFieldValidation(event) {
+  var target = '';
+  switch(event.target.name) {
+    case "seach-text":
+      target = searchField;
+      break;
+    case "user-login":
+      target = loginField;
+      break;
+    case "user-password":
+      target = paswdField;
+      break;
+    case "subscribe-mail":
+      target = subscribeField;
+      break;
+    case "feedback-name":
+      target = feedbackNameField;
+      break;
+    case "feedback-mail":
+      target = feedbackMailField;
+      break;
+    case "feedback-message":
+      target = feedbackMessField;
+      break;
+  }
+  if( target && target.value) {
+    target.classList.remove("border-error");
+  }
+}
+
+/**
+ * Валидация формы авторизации при отправке
+ */
+function evtAuthValidation(event) {
+  if( !loginField.value || !paswdField.value ) {
+    event.preventDefault();
+    if ( !loginField.value ) {
+      loginField.placeholder = "Введите логин";
+      showEventError(loginField);
+    } else if ( !paswdField.value ) {
+      paswdField.placeholder = "Введите пароль";
+      showEventError(paswdField);
+    }
+  } else {
+    /* сохраняем в LS логин если форма отправлена */
+    if( isStorageSupport ) {
+      localStorage.setItem("login", loginField.value);
+    }
+  }
+}
+
+/**
+ * Обработка отправления формы подписки
+ */
+function evtSubscribeValidation(event) {
+  if( !subscribeField.value) {
+    event.preventDefault();
+    showEventError(subscribeField);
+  }
+}
+
+/**
+ * Обработка отправления формы обратной связи
+ */
+function evtFeedbackValidation(event) {
+  if( !feedbackNameField.value || !feedbackMailField.value || !feedbackMessField.value) {
+    event.preventDefault();
+    if( !feedbackNameField.value) {
+      showEventError(feedbackNameField);
+    } else if( !feedbackMailField.value) {
+      showEventError(feedbackMailField);
+    } else if( !feedbackMessField.value) {
+      showEventError(feedbackMessField);
+    }
+  }
+}
+
+/**
+ * Отображение ошибки в указанном объекте
+ * @param  object target - выбранный DOM объект
+ */
+function showEventError(target) {
+  if (typeof target === 'object' ) {
+    target.classList.add("border-error");
+    target.classList.remove("error");
+    target.classList.add("error");
+    setTimeout(function() {
+      target.classList.remove("error");
+    }, 700);
+  }
+}
+
 
 /* обработчик удаление элементов корзины */
 function deleteBasketElem(event) {

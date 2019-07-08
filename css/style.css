@@ -1025,7 +1025,7 @@ input[type="radio"].visually-hidden {
 }
 
 /* форма обратной связи */
-.feedback-form {
+.form-feedback {
   position: fixed;
   z-index: 10;
   top: 20px;
@@ -1039,33 +1039,33 @@ input[type="radio"].visually-hidden {
   background-color: var(--color-menu-bg);
   box-shadow: 0 20px 20px 0 var(--transparent-black-40);
 }
-.feedback-form h3 {
+.form-feedback h3 {
   margin: 0 0 20px;
   font-size: 24px;
   line-height: 28px;
   font-weight: 500;
   color: var(--color-text-default);
 }
-.feedback-form input {
+.form-feedback input {
   margin: 0 0 20px;
   width: 267px;
   font: inherit;
   line-height: 24px;
 }
-.feedback-form textarea {
+.form-feedback textarea {
   margin: 0 0 25px;
   width: 100%;
   height: 155px;
 }
-.feedback-form .button-close {
+.form-feedback .button-close {
   top: 15px;
   right: 16px;
 }
-.feedback-form .button-close:hover {
+.form-feedback .button-close:hover {
   outline: 1px solid rgba(46, 136, 228, 0.52);
   outline-offset: 2px;
 }
-.feedback-form .button-close:focus {
+.form-feedback .button-close:focus {
   outline: 2px solid rgba(46, 136, 228, 0.52);
   outline-offset: 2px;
 }
@@ -1643,6 +1643,26 @@ input[type="radio"].visually-hidden {
   font-size: 12px;
   line-height: 18px;
 }
+
+/* --- ошибки и анимация --- */
+input[type="text"].border-error,
+input[type="password"].border-error,
+input[type="text"].border-error:focus,
+input[type="password"].border-error:focus {
+  border-color: red;
+  box-shadow: 0 0 0px 1px rgba(255, 0, 0, 0.52);
+}
+.error {
+  animation-name: shake;
+  animation-duration: 0.6s;
+}
+
+@keyframes shake {
+  0%, 100% { -webkit-transform: translateX(0); transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { -webkit-transform: translateX(-10px); transform: translateX(-10px); }
+  20%, 40%, 60%, 80% { -webkit-transform: translateX(10px); transform: translateX(10px); }
+}
+
 
 @media (min-width: 900px) and (max-width: 1200px) {
   body {
