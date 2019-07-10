@@ -1,3 +1,5 @@
+'use strict';
+
 // номер слайдер
 var sliderId = 0;
 // предыд.слайдер
@@ -44,16 +46,13 @@ if ( isStorageSupport) {
 }
 
 
-// открытие всплывающих блоков по нажатию Пробела
-window.addEventListener("keydown", showPopupBySpace );
-
-// закрытие формы обратной связи по нажатию ESC
-window.addEventListener("keydown", evtCloseByEsc );
+// открытие всплывающих блоков по нажатию пробела и закрытие формы обратной связи по нажатию ESC
+window.addEventListener("keydown", evtWindowKeydown );
 
 // валидация формы поиска при отправлении
-formSearch.addEventListener("submit", evtSearchValidation );
+formSearch.addEventListener("submit", evtFormSearchSumitValidation );
 // проверка полей формы авторизации при
-searchField.addEventListener("input", evtFieldValidation );
+searchField.addEventListener("input", evtFieldInputValidation );
 
 // скрытие формы поиска при потере фокуса
 formSearch.querySelector('input').addEventListener("blur", function() {
@@ -68,23 +67,23 @@ userAuth.querySelector('a:last-child').addEventListener("blur", function() {
 });
 
 // валидация формы авторизации при отправлении
-userAuth.addEventListener("submit", evtAuthValidation );
+userAuth.addEventListener("submit", evtUserAuthSubmitValidation );
 // проверка полей формы авторизации при изменении
-loginField.addEventListener("input", evtFieldValidation );
-paswdField.addEventListener("input", evtFieldValidation );
+loginField.addEventListener("input", evtFieldInputValidation );
+paswdField.addEventListener("input", evtFieldInputValidation );
 
 // валидация формы подписки при отправлении
 if( formSubscribe ) {
   formSubscribe.addEventListener("submit", evtSubscribeValidation );
   // проверка полей формы авторизации при изменении
   var subscribeField = formSubscribe.querySelector("[name='subscribe-mail']");
-  subscribeField.addEventListener("input", evtFieldValidation );
+  subscribeField.addEventListener("input", evtFieldInputValidation );
 }
 
 // показ формы обратной связи
 if( formFeedback ) {
-  var feedback = document.querySelector(".our-adress button");
-  feedback.addEventListener('click', showFeedback);
+  var buttonFeedback = document.querySelector(".our-adress button");
+  buttonFeedback.addEventListener('click', evtButtonFeedbackClick);
 
   // валидация формы обратной связи при отправлении
   formFeedback.addEventListener("submit", evtFeedbackValidation );
@@ -93,9 +92,9 @@ if( formFeedback ) {
   var feedbackMailField = formFeedback.querySelector("[name='feedback-mail']");
   var feedbackMessField = formFeedback.querySelector("[name='feedback-message']");
   // проверка полей формы авторизации при изменении
-  feedbackNameField.addEventListener("input", evtFieldValidation );
-  feedbackMailField.addEventListener("input", evtFieldValidation );
-  feedbackMessField.addEventListener("input", evtFieldValidation );
+  feedbackNameField.addEventListener("input", evtFieldInputValidation );
+  feedbackMailField.addEventListener("input", evtFieldInputValidation );
+  feedbackMessField.addEventListener("input", evtFieldInputValidation );
 }
 
 // скрытие корзины при потере фокуса
@@ -103,7 +102,7 @@ if(basket) {
   buttonBasket.addEventListener("focus", function() {
     basket.classList.remove("showed");
   });
-  basketOrder = basket.querySelector('.button:last-child').addEventListener("blur", function() {
+  var basketOrder = basket.querySelector('.button:last-child').addEventListener("blur", function() {
     basket.classList.remove("showed");
   });
 }
@@ -118,10 +117,10 @@ catalogMenuLink.addEventListener("blur", function() {
 // удаление элементов корзины
 var basketPopup = document.querySelector('.basket-popup');
 if( basketPopup ) {
-  var basketDelete = basketPopup.querySelectorAll(".product-rm");
-    if(basketDelete.length) {
-      basketDelete.forEach( function(elem) {
-        elem.addEventListener("click", deleteBasketElem);
+  var buttonBasketDelete = basketPopup.querySelectorAll(".product-rm");
+    if(buttonBasketDelete.length) {
+      buttonBasketDelete.forEach( function(basketDelete) {
+        basketDelete.addEventListener("click", evtBasketDeleteClick);
       });
     }
 }
@@ -141,7 +140,7 @@ const PRICE_DIAPAZON = PRICE_MAX - PRICE_MIN;
 const RANGE_MARGIN = 21;
 const RANGE_WIDTH = 176;
 if( blockPrice ) {
-  priceRange = document.createElement("div");
+  var priceRange = document.createElement("div");
   priceRange.className = "price-range";
   blockPrice.appendChild(priceRange);
 
@@ -270,9 +269,19 @@ function setBackground(sliderId) {
 }
 
 /**
- * Обработка нажатия пробела на пунктах меню и кнопках для доступности
+ * Обработка нажатия кнопок 
+ * - пробела на пунктах меню и кнопках для доступности
+ * - ESC для закрытия открытых модальных окон
  */
-function showPopupBySpace(event) {
+function evtWindowKeydown(event) {
+  // ESC
+  if( event.keyCode === 27 ) {
+    if( !formFeedback.classList.contains("hidden") ) {
+      event.preventDefault();
+      formFeedback.classList.add('hidden');
+    }
+  }
+  // пробел
   if( event.keyCode === 32 ) {
     var showSearch = event.target.classList.contains('button-search');
     var showLogin = event.target.classList.contains('login-link');
@@ -308,9 +317,9 @@ function showPopupBySpace(event) {
 }
 
 /**
- * обработчик закрытия формы обратной связи
+ * обработчик показая формы обратной связи
  */
-function showFeedback() {
+function evtButtonFeedbackClick() {
   formFeedback.classList.remove('hidden');
   formFeedback.querySelector("#feedback-name").focus();
   var feedbackClose = formFeedback.querySelector('.button-close');
@@ -319,22 +328,11 @@ function showFeedback() {
   });
 }
 
-/**
- * обработчик закрытия открытых модальных окон и оверлея по ESC 
- */
-function evtCloseByEsc(event) {
-  if( event.keyCode === 27 ) {
-    if( !formFeedback.classList.contains("hidden") ) {
-      event.preventDefault();
-      formFeedback.classList.add('hidden');
-    }
-  }
-}
 
 /**
  * Валидация формы поиска при отправке
  */
-function evtSearchValidation(event) {
+function evtFormSearchSumitValidation(event) {
   if( !searchField.value) {
     event.preventDefault();
     showEventError(searchField);
@@ -344,7 +342,7 @@ function evtSearchValidation(event) {
 /**
  * удаление класса для индикации ошибки при изменении и не пустом значении
  */
-function evtFieldValidation(event) {
+function evtFieldInputValidation(event) {
   var target = '';
   switch(event.target.name) {
     case "seach-text":
@@ -377,7 +375,7 @@ function evtFieldValidation(event) {
 /**
  * Валидация формы авторизации при отправке
  */
-function evtAuthValidation(event) {
+function evtUserAuthSubmitValidation(event) {
   if( !loginField.value || !paswdField.value ) {
     event.preventDefault();
     if ( !loginField.value ) {
@@ -438,7 +436,7 @@ function showEventError(target) {
 
 
 /* обработчик удаление элементов корзины */
-function deleteBasketElem(event) {
+function evtBasketDeleteClick(event) {
   var tr = event.target.closest("tr");
   tr.remove();
 
@@ -452,7 +450,7 @@ function deleteBasketElem(event) {
   if(productSum.length) {
     productSum.forEach( function(elem) {
       basketCount++;
-      sum = elem.innerText.slice(0, elem.innerText.indexOf(' руб.'));
+      var sum = elem.innerText.slice(0, elem.innerText.indexOf(' руб.'));
       sum = sum.replace(/\s/g, '');
       basketSum += +sum;
     });
