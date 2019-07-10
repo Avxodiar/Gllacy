@@ -244,7 +244,7 @@ function sliderInit() {
  * сохраняет последний слайдер в localStorage для последующей установки фонового цвета
  */
 function setSliderListeners() {
-  var sliders = document.getElementsByName("slider");  
+  var sliders = document.querySelectorAll("input[name='slider']");
   if(sliders) {
     for (var i = 0; i < sliders.length; i++) {
       sliders[i].addEventListener("change", function(event) {
@@ -487,18 +487,19 @@ function isVisible(element) {
  * Динамическая загрузка гугл-карты и замена статичного jpg в модальном окне карты
  */
 function showFrameMap() {
-  var officeMap = document.querySelector(".office-map");
+  var officeMap = document.querySelector(".office-map .map");
   if( officeMap ) {
     var frameMap = officeMap.querySelector("iframe");
     if(frameMap === null ) {
       frameMap = document.createElement("iframe");
       frameMap.width = 1200;
       frameMap.height = 430;
+      frameMap.className = "hidden";
       frameMap.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1998.6036253003365!2d30.32085871651319!3d59.93871916905374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4696310fca145cc1%3A0x42b32648d8238007!2z0JHQvtC70YzRiNCw0Y8g0JrQvtC90Y7RiNC10L3QvdCw0Y8g0YPQuy4sIDE5LzgsINCh0LDQvdC60YIt0J_QtdGC0LXRgNCx0YPRgNCzLCAxOTExODY!5e0!3m2!1sru!2sru!4v1561079752419!5m2!1sru!2sru"
       frameMap.title = frameMap.innerHTML = "Адрес главного офиса и офлайн-магазина: ул. Большая Конюшенная 19/8, Санкт-Петербург";
       officeMap.appendChild(frameMap);
       frameMap.addEventListener('load', function() {
-        officeMap.removeChild( officeMap.querySelector("img"));
+        frameMap.classList.remove("hidden");
       });
     }
   }

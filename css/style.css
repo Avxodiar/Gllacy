@@ -898,7 +898,7 @@ input[type="radio"].visually-hidden {
 }
 .shop-seo li {
   position: relative;
-  padding: 14px 8px 8px 56px;
+  padding: 14px 0 8px 56px;
   width: 540px;
 }
 
@@ -986,16 +986,29 @@ input[type="radio"].visually-hidden {
 
 /* карта и адрес */
 .office-map {
+  height: 430px;
+}
+.office-map .container {
   position: relative;
-  left: 50%;
+}
+.office-map .map {
+  position: absolute;
   width: 1200px;
   height: 430px;
+  left: 50%;
   margin-left: -600px;
+  background-image: url("../img/map-full.jpg");
+  background-position: -25px -110px;
+  background-repeat: no-repeat;
+}
+.office-map iframe {
+  width: 100%;
 }
 .our-adress {
   position: absolute;
+  z-index: 1;
   top:62px;
-  right: 60px;
+  right: 30px;
   width: 300px;
   padding: 29px 25px;
   color: var(--color-text-default);
@@ -1663,11 +1676,21 @@ input[type="password"].border-error:focus {
   20%, 40%, 60%, 80% { -webkit-transform: translateX(10px); transform: translateX(10px); }
 }
 
-
-@media (min-width: 900px) and (max-width: 1200px) {
+/* вторичный фикс.размер 900px */
+@media (min-width: 924px) and (max-width: 1224px) {
   body {
     width: 900px;
     padding: 0 21px;
+    background-image: radial-gradient(circle at center 450px, #c7ecd8, #849D8F 20%);
+  }
+  .bg-green {
+    background-image: radial-gradient(circle at center 450px, #c7ecd8, #849D8F 20%);
+  }
+  .bg-blue {
+    background-image: radial-gradient(circle at center 450px, #c5d8e8, #8996a6 20%);
+  }
+  .bg-light-brown {
+    background-image: radial-gradient(circle at center 450px, #e1ccc4, #9d8b84 20%);
   }
   .main-menu {
     width: 400px;
@@ -1726,12 +1749,11 @@ input[type="password"].border-error:focus {
   }
 
 
-  .office-map {
-    width: 900px;
-    margin-left: -450px;
-  }
-  .office-map iframe {
-    width: 900px;
+  .office-map .map {
+    width: 100%;
+    margin-left: 0;
+    left: 0;
+    background-position: -50px -110px;
   }
 
   .inner-pages .catalog {
@@ -1740,10 +1762,22 @@ input[type="password"].border-error:focus {
 }
 
 
-@media (max-width: 900px) {
+/* дополнительные стили для небольших устройств 720-768px */
+@media (max-width: 924px) {
   body {
+    min-width: 720px;
     width: 720px;
     padding: 0 17px;
+    background-image: radial-gradient(circle at center 450px, #c7ecd8, #849D8F 15%);
+  }
+  .bg-green {
+    background-image: radial-gradient(circle at center 450px, #c7ecd8, #849D8F 15%);
+  }
+  .bg-blue {
+    background-image: radial-gradient(circle at center 450px, #c5d8e8, #8996a6 15%);
+  }
+  .bg-light-brown {
+    background-image: radial-gradient(circle at center 450px, #e1ccc4, #9d8b84 15%);
   }
   .main-menu {
     width: 400px;
@@ -1823,17 +1857,13 @@ input[type="password"].border-error:focus {
   }
 
   .office-map {
-    width: 720px;
-    height: 520px;
-    margin-left: -360px;
+    position: static;
   }
-  .our-adress {
-    top: 130px;
-    left: 12px;
-  }
-  .office-map iframe {
-    width: 720px;
-    height: 520px;
+  .office-map .map {
+    width: 100%;
+    margin-left: 0;
+    left: 0;
+    background-position: -100px -110px;
   }
 
   .main-footer {
@@ -1845,5 +1875,35 @@ input[type="password"].border-error:focus {
   }
   .social-links li {
     margin-bottom: 6px;
+  }
+}
+
+/* вспомогательные стили ширины 720px для устройств с чуть меньшей шириной без фактической их поддержки */
+@media (min-width: 600px) and (max-width: 744px) {
+  body {
+    min-width: 696px;
+    width: 696px;
+    padding: 0 10px;
+    background-image: radial-gradient(circle at center 450px, #c7ecd8, #849D8F 10%);
+  }
+  .bg-green {
+    background-image: radial-gradient(circle at center 450px, #c7ecd8, #849D8F 10%);
+  }
+  .bg-blue {
+    background-image: radial-gradient(circle at center 450px, #c5d8e8, #8996a6 10%);
+  }
+  .bg-light-brown {
+    background-image: radial-gradient(circle at center 450px, #e1ccc4, #9d8b84 10%);
+  }
+  .icecream {
+    margin-left: 36px;
+    margin-right: 70px;
+  }
+  .icecream:nth-child(2n) {
+    margin-left: 0;
+    margin-right: 36px;
+  }
+  .office-map .map {
+    background-position: -150px -110px;
   }
 }
