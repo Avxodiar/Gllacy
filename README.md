@@ -5,4 +5,4 @@
 «Профессиональный HTML и CSS, уровень 1» от [HTML Academy](https://htmlacademy.ru)<br>
 Используемые технологии: HTML5 / CSS3 / нативный JavaScript<br>
 Фиксированная вёрстка, прогрессивное улучшение<br>
-Спецификация: [Specification.md](https://github.com/Avxodiar/barbershop/blob/master/Specification.md)
+Спецификация: [Specification.md](https://github.com/Avxodiar/Gllacy/blob/master/Specification.md)
