@@ -50,7 +50,7 @@ if ( isStorageSupport) {
 window.addEventListener("keydown", evtWindowKeydown );
 
 // валидация формы поиска при отправлении
-formSearch.addEventListener("submit", evtFormSearchSumitValidation );
+formSearch.addEventListener("submit", evtFormSearchSubmitValidation );
 // проверка полей формы авторизации при
 searchField.addEventListener("input", evtFieldInputValidation );
 
@@ -332,7 +332,7 @@ function evtButtonFeedbackClick() {
 /**
  * Валидация формы поиска при отправке
  */
-function evtFormSearchSumitValidation(event) {
+function evtFormSearchSubmitValidation(event) {
   if( !searchField.value) {
     event.preventDefault();
     showEventError(searchField);

@@ -1,4 +1,4 @@
-:root{
+﻿:root{
   --color-bg-green: #849d8f;
   --color-bg-blue: #8996a6;
   --color-bg-brown: #9d8b84;
@@ -939,19 +939,19 @@ input[type="radio"].visually-hidden {
   font-weight: 500;
 }
 .our-blog a {
-  display: block;
+  display: inline-block;
   font-size: 24px;
   line-height: 30px;
   font-weight: 700;
   color: var(--color-text-default);
   text-decoration: underline;
-  background: var(--transparent-white-70);
+  text-shadow: 0px 0px 10px white;
 }
 .our-blog a:hover {
   color: var(--color-link-modal-default);
+  text-shadow: 0px 0px 2px var(--transparent-black-40);
 }
 .our-blog a:focus {
-  display: inline-block;
   outline-color: var(--transparent-black-50);
 }
 
