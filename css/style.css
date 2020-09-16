@@ -1657,6 +1657,35 @@ input[type="radio"].visually-hidden {
   line-height: 18px;
 }
 
+.copyright a.footer-logo {
+  height: 39px;
+  display: block;
+  background-image: url(../img/logo-htmlacademy.svg);
+  background-repeat: no-repeat;
+  animation: annoying 10s ease-in infinite alternate;
+}
+@keyframes annoying{
+  0% { transform: rotate3d(0, 1, 0, 0deg); }
+  40% { transform: rotate3d(0, 1, 0, 0deg); }
+  100% { transform: rotate3d(0, 1, 0, 360deg); }
+}
+.copyright:hover a.footer-logo {
+  background-image: none;
+  animation: none;
+}
+.copyright a.footer-logo .avx {
+  display: none;
+  line-height: 39px;
+  text-transform: uppercase;
+}
+.copyright:hover a.footer-logo .avx {
+  display: block;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 3px black;
+}
+
 /* --- ошибки и анимация --- */
 input[type="text"].border-error,
 input[type="password"].border-error,
