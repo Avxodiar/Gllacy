@@ -28,7 +28,7 @@ var formFeedback = document.querySelector(".form-feedback");
 
 try {
   sliderId = localStorage.getItem("sliderId");
-} catch {
+} catch (e) {
   isStorageSupport = false;
 }
 
