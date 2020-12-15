@@ -1,7 +1,7 @@
 # Техническое задание на вёрстку
 
 * Название сайта: Глейси
-* Домен: https://avxodiar.github.io/Gllacy/
+* Домен: https://avxodiar.github.io/gllacy/
 
 ---
 
